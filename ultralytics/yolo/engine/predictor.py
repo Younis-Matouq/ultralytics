@@ -94,7 +94,7 @@ class BasePredictor:
         self.batch = None
         self.callbacks = defaultdict(list, callbacks.default_callbacks)  # add callbacks
         callbacks.add_integration_callbacks(self)
-
+        print('this bad')
     def preprocess(self, img):
         pass
 
@@ -175,7 +175,7 @@ class BasePredictor:
             with self.dt[2]:
                 self.results = self.postprocess(preds, im, im0s)
             self.run_callbacks('on_predict_postprocess_end')
-
+            print('this bad')
             # visualize, save, write results
             n = len(im)
             for i in range(n):
@@ -183,6 +183,7 @@ class BasePredictor:
                     'preprocess': self.dt[0].dt * 1E3 / n,
                     'inference': self.dt[1].dt * 1E3 / n,
                     'postprocess': self.dt[2].dt * 1E3 / n}
+                print('this bad')
                 if self.source_type.tensor:  # skip write, show and plot operations if input is raw tensor
                     continue
                 p, im0 = (path[i], im0s[i].copy()) if self.source_type.webcam or self.source_type.from_img \
